@@ -43,16 +43,22 @@ def handle_message(event):
 
     msg = (event.message.text).lower()
 
-    if 'halo' in msg :
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="Halo juga!")
-        )
-    elif 'fakamaya' in msg :
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="sory gban gak pake fakamaya")
-        )
+    user_chat = [
+        'halo',
+        'fakamaya'
+    ]
+
+    reply_chat = [
+        "Halo gan!",
+        "sory gban gak pake fakamaya"
+    ]
+
+    for i in range(0, len(user_chat)):
+        if user_chat[i] in msg :
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=reply_chat[i])
+            )
 
     line_bot_api.reply_message(
         event.reply_token,
